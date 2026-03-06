@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=0.2" name="viewport"/>
+<title>Antivibecoding</title>
+<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" rel="stylesheet"/>
+<link href="css/code-highlight.css" rel="stylesheet"/>
+<link href="css/styles.css" rel="stylesheet"/>
+<link href="css/extension.css" rel="stylesheet"/>
+<style>
+        :root {
+            --slide-width: 720px;
+            --slide-height: 405px;
+        }
+    </style>
+<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" rel="stylesheet"/>
+<script crossorigin="anonymous" defer="" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script crossorigin="anonymous" defer="" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" onload="renderMathInElement(document.body);" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+</head>
+<body>
+<div class="slide-container">
+<div class="slide-content" style="marp: True; paginate: True; ">
+<h1>Antivibecoding</h1>
+<div class="content">
+<div class="auto-sizing">
+<div class="chunk chunk-paragraph">
+<p><strong>Foundations of mathematics · Programming language · Proof assistant</strong></p>
+<p><em>A decade‑long personal project</em></p>
+</div>
+</div>
+<div class="slide-number">
+<p>1</p>
+</div>
+</div>
+</div>
+</div>
+<div class="slide-container">
+<div class="slide-content" style="marp: True; paginate: True; ">
+<h2>The Problem: Modern Proof Assistants</h2>
+<div class="content">
+<div class="auto-sizing">
+<div class="chunk chunk-paragraph">
+<ul>
+<li>Too complex for ordinary mathematicians (Lean, Coq, Isabelle)</li>
+<li>Rely on computational tricks that hide the logic (tactics, SMT, unification)</li>
+<li>No independent, portable certificates</li>
+<li>Hard to adapt for verifying executable specifications (smart contracts)</li>
+</ul>
+<p><strong>Our goal</strong> – a proof assistant that combines mathematical clarity, reliability, and practical applicability.</p>
+</div>
+</div>
+<div class="slide-number">
+<p>2</p>
+</div>
+</div>
+</div>
+</div>
+<div class="slide-container">
+<div class="slide-content" style="marp: True; paginate: True; ">
+<h2>Existing Project: CakeML</h2>
+<div class="content">
+<div class="auto-sizing">
+<div class="chunk chunk-paragraph">
+<ul>
+<li>Only <strong>parametric polymorphism</strong> (types depend on types)</li>
+<li>Missing <strong>full polymorphism</strong> (types depend on values)</li>
+<li><strong>Obelisk’s solution:</strong> add one abstraction layer + code generation → expressive power without sacrificing simplicity</li>
+</ul>
+</div>
+</div>
+<div class="slide-number">
+<p>3</p>
+</div>
+</div>
+</div>
+</div>
+<div class="slide-container">
+<div class="slide-content" style="marp: True; paginate: True; ">
+<h2>What Is Obelisk?</h2>
+<div class="content">
+<div class="auto-sizing">
+<div class="chunk chunk-paragraph">
+<p><strong>Website:</strong> <a href="https://ObeliskProofAssistant.github.io/">https://ObeliskProofAssistant.github.io/</a></p>
+<p>A proof assistant built on these principles:</p>
+<ul>
+<li><strong>Zero implicit computation</strong> – no reduction or normalisation magic in the kernel. Every proof step is an explicit syntactic tree, checkable by hand.</li>
+<li><strong>Pure declarative syntax</strong> – like a mathematical paper, not a functional program. No tactic noise (<code>intro</code>, <code>apply</code>, <code>rewrite</code>) – low learning curve.</li>
+<li><strong>Ultra‑small trusted kernel</strong> (~20k LOC) – no heavy type‑theory engine; the kernel can be manually audited.</li>
+<li><strong>Stable definitions</strong> – proofs do not break when definitions change, because nothing is computed during verification. AI‑friendly and reusable.</li>
+<li><strong>Clear error messages</strong> – no “failed to synthesise instance” nightmares. Errors point directly to missing logical premises.</li>
+</ul>
+</div>
+</div>
+<div class="slide-number">
+<p>4</p>
+</div>
+</div>
+</div>
+</div>
+<div class="slide-container">
+<div class="slide-content" style="marp: True; paginate: True; ">
+<h2>Logical Foundations of Obelisk (Overview)</h2>
+<div class="content">
+<div class="auto-sizing">
+<div class="chunk chunk-paragraph">
+<p>Core logic is based on class theory (similar to NBG). Key definitions:</p>
+<ul>
+<li><strong>“Set”</strong> – a class that is an element of another class.</li>
+<li><strong>“Proper class”</strong> – a class that is not a set.</li>
+<li><strong>Empty set, universal class, subclass</strong> – standard definitions.</li>
+<li><strong>Extensionality, heredity, exponent (power class), regularity</strong> – axioms ensuring set‑theoretic properties.</li>
+<li><strong>Transitivity and ordinality</strong> – defined classically; the class of all ordinals <code>On</code> is itself an ordinal class.</li>
+</ul>
+<p>All proofs are built explicitly, without computation – the foundation of reliability.</p>
+</div>
+</div>
+<div class="slide-number">
+<p>5</p>
+</div>
+</div>
+</div>
+</div>
+<div class="slide-container">
+<div class="slide-content" style="marp: True; paginate: True; ">
+<h2>Comparison: Lean</h2>
+<div class="content">
+<div class="auto-sizing">
+<div class="chunk chunk-paragraph">
+<ul>
+<li>Lean is difficult for mathematicians (dependent types, tactics, complex unifier).</li>
+<li>Obelisk gives a direct, explicit style close to paper mathematics.</li>
+</ul>
+</div>
+</div>
+<div class="slide-number">
+<p>6</p>
+</div>
+</div>
+</div>
+</div>
+<div class="slide-container">
+<div class="slide-content" style="marp: True; paginate: True; ">
+<h2>Comparison: Metamath</h2>
+<div class="content">
+<div class="auto-sizing">
+<div class="chunk chunk-paragraph">
+<ul>
+<li>Metamath “glues” unrelated statements, lacks reflection and polymorphism.</li>
+<li>Obelisk supports full polymorphism and abstraction.</li>
+</ul>
+</div>
+</div>
+<div class="slide-number">
+<p>7</p>
+</div>
+</div>
+</div>
+</div>
+<div class="slide-container">
+<div class="slide-content" style="marp: True; paginate: True; ">
+<h2>Comparison: HOL4 (CakeML)</h2>
+<div class="content">
+<div class="auto-sizing">
+<div class="chunk chunk-paragraph">
+<ul>
+<li>Limited expressiveness (only parametric polymorphism).</li>
+<li>Obelisk solves this via abstraction + code generation.</li>
+</ul>
+</div>
+</div>
+<div class="slide-number">
+<p>8</p>
+</div>
+</div>
+</div>
+</div>
+<div class="slide-container">
+<div class="slide-content" style="marp: True; paginate: True; ">
+<h2>Comparison: Coq</h2>
+<div class="content">
+<div class="auto-sizing">
+<div class="chunk chunk-paragraph">
+<ul>
+<li>Coq focuses on low‑level software verification automation – a different niche.</li>
+<li>Obelisk targets mathematical clarity and verification of specifications (e.g., smart contracts).</li>
+</ul>
+</div>
+</div>
+<div class="slide-number">
+<p>9</p>
+</div>
+</div>
+</div>
+</div>
+<div class="slide-container">
+<div class="slide-content" style="marp: True; paginate: True; ">
+<h2>Comparison: Isabelle</h2>
+<div class="content">
+<div class="auto-sizing">
+<div class="chunk chunk-paragraph">
+<ul>
+<li>Many abstraction layers, complex to understand.</li>
+<li>Obelisk has a minimal, transparent kernel.</li>
+</ul>
+</div>
+</div>
+<div class="slide-number">
+<p>10</p>
+</div>
+</div>
+</div>
+</div>
+<div class="slide-container">
+<div class="slide-content" style="marp: True; paginate: True; ">
+<h2>Comparison: Mizar</h2>
+<div class="content">
+<div class="auto-sizing">
+<div class="chunk chunk-paragraph">
+<ul>
+<li>Mizar is built for mathematical literature, but its implementation is monolithic and hard to extend.</li>
+<li>Obelisk has a modern modular kernel and supports executable code generation.</li>
+</ul>
+</div>
+</div>
+<div class="slide-number">
+<p>11</p>
+</div>
+</div>
+</div>
+</div>
+<div class="slide-container">
+<div class="slide-content" style="marp: True; paginate: True; ">
+<h2>Comparison: Idris / Agda</h2>
+<div class="content">
+<div class="auto-sizing">
+<div class="chunk chunk-paragraph">
+<ul>
+<li>Idris verifies by normalisation (computation) – leads to <strong>computational opacity</strong>.</li>
+<li>Obelisk proves equalities step‑by‑step – no need to trust an evaluator.</li>
+<li>Idris is a programming language with effects (IO); its logic is unsound due to partiality.</li>
+<li>Obelisk is <strong>total</strong> and logically consistent.</li>
+<li>Idris proof terms disappear after compilation; Obelisk exports portable, human‑readable proof certificates.</li>
+</ul>
+</div>
+</div>
+<div class="slide-number">
+<p>12</p>
+</div>
+</div>
+</div>
+</div>
+<div class="slide-container">
+<div class="slide-content" style="marp: True; paginate: True; ">
+<h2>Comparison: HOL Light / ACL2 / PVS</h2>
+<div class="content">
+<div class="auto-sizing">
+<div class="chunk chunk-paragraph">
+<ul>
+<li>Heavy reliance on tactics (rewriting, SMT) – proof scripts are unreadable and brittle.</li>
+<li>Obelisk proofs are static lists of logical steps – readable even by auditors.</li>
+<li>No dependence on external SAT/SMT solvers – the kernel is self‑contained.</li>
+<li>Optimised for <strong>explanatory power</strong>, not speed – essential for regulated industries (finance, aerospace) where auditors must understand <em>why</em> a property holds.</li>
+</ul>
+</div>
+</div>
+<div class="slide-number">
+<p>13</p>
+</div>
+</div>
+</div>
+</div>
+<div class="slide-container">
+<div class="slide-content" style="marp: True; paginate: True; ">
+<h2>Why Not Haskell?</h2>
+<div class="content">
+<div class="auto-sizing">
+<div class="chunk chunk-paragraph">
+<ul>
+<li>Haskell is a programming language, not a proof assistant.</li>
+<li>Logically inconsistent – general recursion, <code>undefined</code>, <code>error</code> introduce <code>⊥ :: a</code>.</li>
+<li>Unreliable GHC backend – a property verified today may break with the next compiler update.</li>
+<li>No independent proof object – type‑checks are lost after compilation.</li>
+</ul>
+<p><strong>How Obelisk beats Haskell:</strong></p>
+<ul>
+<li><strong>Totality</strong> – every function is guaranteed to terminate.</li>
+<li><strong>Certified proofs</strong> – explicit, portable certificate re‑checkable by a tiny verifier.</li>
+<li><strong>Mathematical consistency</strong> – built on solid foundations (class theory / HOL).</li>
+</ul>
+</div>
+</div>
+<div class="slide-number">
+<p>14</p>
+</div>
+</div>
+</div>
+</div>
+<div class="slide-container">
+<div class="slide-content" style="marp: True; paginate: True; ">
+<h2>Conclusion</h2>
+<div class="content">
+<div class="auto-sizing">
+<div class="chunk chunk-paragraph">
+<p>Obelisk is the <strong>anti‑“vibecoding”</strong> for proofs:</p>
+<ul>
+<li>Transparency over magic</li>
+<li>Explicitness over implicit computation</li>
+<li>Reliability over trust in huge systems</li>
+</ul>
+<p><strong>Mission</strong> – make formal verification accessible to mathematicians, engineers, and auditors, while remaining suitable for real‑world executable specifications (smart contracts, critical software).</p>
+</div>
+</div>
+<div class="slide-number">
+<p>15</p>
+</div>
+</div>
+</div>
+</div>
+<div class="slide-container">
+<div class="slide-content" style="marp: True; paginate: True; ">
+<h2>Thank You!</h2>
+<div class="content">
+<div class="auto-sizing">
+<div class="chunk chunk-paragraph">
+<p><strong>Explore Obelisk:</strong><br/>
+<a href="https://ObeliskProofAssistant.github.io/">https://ObeliskProofAssistant.github.io/</a></p>
+<p><em>“Building bridges between mathematics and verifiable code.”</em></p>
+</div>
+</div>
+<div class="slide-number">
+<p>16</p>
+</div>
+</div>
+</div>
+</div>
+<div class="floating-btn">
+<button class="action-btn" onclick="togglePresentationMode()">
+            💻 Toggle Slideshow
+        </button>
+<button class="action-btn" onclick="window.print()">
+            🖨 Save as PDF
+        </button>
+</div>
+<script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        const colorScheme = getComputedStyle(document.documentElement).getPropertyValue('--colorscheme').trim();
+        var mermaid_theme = "default";
+        if (colorScheme === "dark") {
+            console.log("Using dark theme");
+            mermaid_theme = "dark";
+        }
+        mermaid.initialize({ startOnLoad: true, theme: mermaid_theme });
+    </script>
+<script src="js/main.js"></script>
+<script src="js/extension.js"></script>
+</body>
+</html>
